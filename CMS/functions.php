@@ -22,4 +22,47 @@ function logout(){
 	$_SESSION['pass'] = '';
 }
 
+function getJsonFilesList($dir){
+	if ($handle = opendir($dir)){
+		$thelist = array();
+	    while(false !== ($file = readdir($handle))){
+	        if ($file != "." && $file != ".." && strtolower(substr($file, strrpos($file, '.') + 1)) == 'json'){
+	            $thelist[] = $file;
+	        }
+	    }
+	    closedir($handle);
+	}else{
+		return false;
+	}
+	return $thelist;
+}
+
+function getArrayFromJsonFile($file){
+	$res = file_get_contents($file);
+	$res = json_decode($res);
+	return $res;
+}
+
+function getContentTypes(){
+	$files = getJsonFilesList(CONTENT_TYPES_DIR);
+	sort($files);
+	$result = array();
+	if(count($files)>0){
+		foreach($files as $file){
+			$result[] = getArrayFromJsonFile(CONTENT_TYPES_DIR.$file);
+		}
+		return $result;
+	}else{
+		return false;
+	}
+}
+
+function getContentType($type){
+	$cts = getContentTypes();
+	foreach ($cts as $ct){
+		if($ct->type==$type){
+			return $ct;
+		}
+	}
+}
 ?>

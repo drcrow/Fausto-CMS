@@ -1,4 +1,17 @@
 <?php
 require_once('home_nav.php');
-require_once('home_main.php');
 ?>
+<div class="container-fluid">
+  <div class="row">
+<?php
+require_once('home_sidebar.php');
+
+if(isset($_GET['content'])){
+	require_once('home_content.php');
+}else{
+	require_once('home_main.php');
+}
+?>
+        
+  </div>
+</div>

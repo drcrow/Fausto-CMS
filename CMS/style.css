@@ -45,16 +45,6 @@ body {
 */
 
 /*
- * Base structure
- */
-
-/* Move down content because we have a fixed navbar that is 50px tall */
-body {
-  padding-top: 50px;
-}
-
-
-/*
  * Global add-ons
  */
 
@@ -105,6 +95,7 @@ body {
   padding-right: 20px;
   padding-left: 20px;
 }
+
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
@@ -112,6 +103,12 @@ body {
   background-color: #428bca;
 }
 
+
+.nav-sidebar > li > p {
+  padding-right: 20px;
+  padding-left: 20px;
+  font-weight: bold;
+}
 
 /*
  * Main content

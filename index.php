@@ -17,6 +17,9 @@ if(isset($_POST['loginBtn'])){
 	}
 }
 
+//CONTENT TYPES
+$contentTypes = getContentTypes();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
