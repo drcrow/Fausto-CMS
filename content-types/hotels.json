@@ -1,6 +1,7 @@
 {
 	"type": "hotels",
 	"label": "Hotels",
+	"single": "Hotel",
 	"icon": "glyphicon-home",
 	"fields": [
 		{"name": "Property ID", "id": "prop-id", "type": "int"},

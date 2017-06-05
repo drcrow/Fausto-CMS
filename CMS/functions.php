@@ -65,4 +65,12 @@ function getContentType($type){
 		}
 	}
 }
+
+function getLanguagesList(){
+	return explode(',', LANGUAGES);
+}
+
+function getForm(){
+	
+}
 ?>
