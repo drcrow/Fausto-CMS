@@ -3,6 +3,20 @@ require_once('config.php');
 require_once('CMS/functions.php');
 session_start();
 
+//LOGOUT
+if(isset($_GET['logout'])){
+	logout();
+}
+
+//LOGIN
+if(isset($_POST['loginBtn'])){
+	if(login($_POST['inputUsername'], $_POST['inputPassword'])){
+
+	}else{
+		$loginError = true;
+	}
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +36,7 @@ session_start();
     <title><?=PAGE_TITLE?></title>
 </head>
 <body>
-<div class="container">
+
 <?php
 if(isAdmin()){
 	require_once('CMS/home.php');
@@ -30,7 +44,7 @@ if(isAdmin()){
 	require_once('CMS/login_form.php');
 }
 ?>
-</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
