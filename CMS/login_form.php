@@ -1,5 +1,5 @@
 <div class="container">
-      <form class="form-signin" method="post" target="?login">
+      <form class="form-signin" method="post" action="?login">
         <h2 class="form-signin-heading">Welcome to <?=PAGE_TITLE?></h2>
 
 <?php
