@@ -8,7 +8,7 @@ $ct = getContentType($_GET['content']);
 
 <?php
 
-print_r($_POST);
+echo '<pre>'.print_r($_POST, true).'</pre>';
 
 //LANGUAGES TABS
 if(count($languages)>1){
@@ -45,8 +45,11 @@ if(count($languages)>1){
 		echo '<div class="tab-pane fade '.$tempClass.'" role="tabpanel" id="langTab-'.$lang.'" aria-labelledby="home-tab"> ';
 		echo getForm($ct, $lang);
 		echo '</div>';
-		echo '</form>';
+		
 	}
+	echo '<input type="hidden" name="type" value="'.$ct->type.'">';
+	echo '<input type="hidden" name="edit" value="'.@$_GET['id'].'">';
+	echo '</form>';
 	echo '</div>';
 }
 ?>
