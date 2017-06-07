@@ -82,7 +82,7 @@ function getForm($ct, $lang){
 		$html .= getField($field, $lang);
 	}
 
-	$html .= '<div class="pull-right" style="overflow:auto"><button class="btn btn-primary" type="submit">Button</button></div>';
+	$html .= '<div class="pull-right" style="overflow:auto"><button class="btn btn-primary" type="submit">Save</button></div>';
 	
 
 	return $html;

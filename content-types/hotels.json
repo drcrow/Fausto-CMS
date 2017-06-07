@@ -6,8 +6,17 @@
 	"multi": true,
 	"fields": [
 		{"name": "Property ID", "id": "prop-id", "type": "number", "index": true},
-		{"name": "Name", "id": "name", "type": "text"},
+		
+		{"name": "Name", "id": "name", "type": "text", "hint": "Complete porperty name"},
+		{"name": "Picture", "id": "picture", "type": "url", "hint": "Image URL"},
+		{"name": "Address", "id": "address", "type": "text"},
 		{"name": "Description", "id": "description", "type": "multiline"},
-		{"name": "Picture", "id": "picture", "type": "url", "hint": "Image URL"}
+		{"name": "Stars", "id": "stars", "type": "number"},
+
+		{"name": "Photos", "id": "photos_url", "type": "url"},
+		{"name": "Videos", "id": "videos_url", "type": "url"},
+		{"name": "View More", "id": "view_more_url", "type": "url"},
+		{"name": "Book Now", "id": "book_now", "type": "url"}
+		
 	]
 }
