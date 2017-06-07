@@ -7,6 +7,15 @@ $ct = getContentType($_GET['content']);
   </h1>
 
 <?php
+//SAVE
+if(isset($_POST)){
+	if(saveData($ct, $_POST)){
+		echo '<div class="alert alert-success" role="alert">Data saved!</div>';
+	}else{
+		echo '<div class="alert alert-danger" role="alert">Error saving the data!</div>';
+	}
+}
+
 
 echo '<pre>'.print_r($_POST, true).'</pre>';
 
