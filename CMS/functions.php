@@ -1,4 +1,8 @@
 <?php
+//add separated fields functions
+require_once('fields.php');
+
+//the rest of the functions
 function isAdmin(){
 	if($_SESSION['user'] == ADMIN_USER && $_SESSION['pass'] == ADMIN_PASS){
 		return true;
@@ -70,7 +74,24 @@ function getLanguagesList(){
 	return explode(',', LANGUAGES);
 }
 
-function getForm(){
-	
+function getForm($ct, $lang){
+	$html = '<form class="form-horizontal content-form">';
+
+	foreach($ct->fields as $field){
+		$html .= getField($field, $lang);
+	}
+
+	$html .= '</form>';
+
+	return $html;
+}
+
+function getField($field, $lang){
+	$func = 'field_'.$field->type;
+	if(function_exists($func)){
+		return $func($field, $lang);
+	}else{
+		return 'Field type '.$field->type.' is undefined!';
+	}
 }
 ?>

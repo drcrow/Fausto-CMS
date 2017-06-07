@@ -1,0 +1,13 @@
+{
+	"type": "options",
+	"label": "Site Options",
+	"single": "Option",
+	"icon": "glyphicon-edit",
+	"multi": false,
+	"fields": [
+		{"name": "AAAAA", "id": "prop-id", "type": "int"},
+		{"name": "BBBBB", "id": "name", "type": "text"},
+		{"name": "Description", "id": "description", "type": "multiline"},
+		{"name": "Picture", "id": "picture", "type": "url", "hint": "Image URL"}
+	]
+}
