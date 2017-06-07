@@ -75,13 +75,15 @@ function getLanguagesList(){
 }
 
 function getForm($ct, $lang){
-	$html = '<form class="form-horizontal content-form">';
+
+	$html = '';
 
 	foreach($ct->fields as $field){
 		$html .= getField($field, $lang);
 	}
 
-	$html .= '</form>';
+	$html .= '<div class="pull-right" style="overflow:auto"><button class="btn btn-primary" type="submit">Button</button></div>';
+	
 
 	return $html;
 }
@@ -93,5 +95,11 @@ function getField($field, $lang){
 	}else{
 		return 'Field type '.$field->type.' is undefined!';
 	}
+}
+
+function saveData($ct, $data){
+	$dataFilePath = CONTENT_DATA_DIR.$ct->type.'.json';
+	$dataFile = file_get_contents($dataFilePath);
+
 }
 ?>

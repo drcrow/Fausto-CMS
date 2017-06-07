@@ -7,6 +7,9 @@ $ct = getContentType($_GET['content']);
   </h1>
 
 <?php
+
+print_r($_POST);
+
 //LANGUAGES TABS
 if(count($languages)>1){
 	$first = true;
@@ -29,6 +32,7 @@ if(count($languages)>1){
 //FORMS TABS
 if(count($languages)>1){
 	$first = true;
+	echo '<form class="form-horizontal content-form" method="post">';
 	echo '<div class="tab-content" id="langTabContent"> ';
 	foreach($languages as $lang){
 		if($first){
@@ -41,6 +45,7 @@ if(count($languages)>1){
 		echo '<div class="tab-pane fade '.$tempClass.'" role="tabpanel" id="langTab-'.$lang.'" aria-labelledby="home-tab"> ';
 		echo getForm($ct, $lang);
 		echo '</div>';
+		echo '</form>';
 	}
 	echo '</div>';
 }
