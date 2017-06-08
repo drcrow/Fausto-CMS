@@ -41,9 +41,9 @@ function getJsonFilesList($dir){
 	return $thelist;
 }
 
-function getArrayFromJsonFile($file){
-	$res = file_get_contents($file);
-	$res = json_decode($res);
+function getArrayFromJsonFile($file, $assoc=false){
+	$res = @file_get_contents($file);
+	$res = json_decode($res, $assoc);
 	return $res;
 }
 
@@ -105,8 +105,11 @@ function saveDataToFile($type, $lang, $data, $edit){
 	//print_r($data);
 
 	$dataFilePath = CONTENT_DATA_DIR.$type.'-'.$lang.'.json';
-	$dataFile = @file_get_contents($dataFilePath);
-	$actualData = json_decode($dataFile);
+	//$dataFile = @file_get_contents($dataFilePath);
+	//$actualData = json_decode($dataFile);
+
+	$actualData = getArrayFromJsonFile($dataFilePath, true);
+	
 	if($actualData==''){
 		$actualData = array();
 	}
@@ -125,5 +128,50 @@ function getIndexId($type){
 			return $field->id;
 		}
 	}
+}
+
+function getTable($ct, $lang){
+
+	$dataFilePath = CONTENT_DATA_DIR.$ct->type.'-'.$lang.'.json';
+	$actualData = getArrayFromJsonFile($dataFilePath);
+
+	$html = '
+	<table class="table table-bordered">
+		<thead><tr>';
+
+	foreach($ct->fields as $field){
+		if(@$field->list==1){
+			$html .= '<th>'.$field->name.'</th>';
+		}
+	}
+	$html .= '<th>Options</th>';
+	$html .= '<tbody>';
+	foreach($actualData as $row){
+		$html .= '<tr>';
+		foreach($row as $id=>$value){
+			if(isFieldListable($ct, $id)){
+				$html .= '<td>'.$value.'</td>';
+			}
+		
+		}
+		$html .= '<td>';
+		$html .= '<button type="button" class="btn btn-success" aria-label="Left Align"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>';
+		$html .= '&nbsp;&nbsp;';
+		$html .= '<button type="button" class="btn btn-danger" aria-label="Left Align"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
+		$html .= '</td>';
+		$html .= '</tr>';
+	}
+	$html .= '</tbody>';
+	$html .= '</table>';
+	return $html;
+}
+
+function isFieldListable($ct, $fieldId){
+	foreach($ct->fields as $field){
+		if(@$field->list == 1 && @$field->id == $fieldId){
+			return true;
+		}
+	}
+	return false;
 }
 ?>

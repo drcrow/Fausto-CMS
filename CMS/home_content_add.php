@@ -8,7 +8,7 @@ $ct = getContentType($_GET['content']);
 
 <?php
 //SAVE
-if(isset($_POST)){
+if(count($_POST)>0){
 	if(saveData($ct, $_POST)){
 		echo '<div class="alert alert-success" role="alert">Data saved!</div>';
 	}else{
@@ -58,8 +58,8 @@ if(count($languages)>1){
 	}
 	echo '<input type="hidden" name="type" value="'.$ct->type.'">';
 	echo '<input type="hidden" name="edit" value="'.@$_GET['id'].'">';
-	echo '</form>';
 	echo '</div>';
+	echo '</form>';
 }
 ?>
 

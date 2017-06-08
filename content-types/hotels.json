@@ -5,9 +5,11 @@
 	"icon": "glyphicon-home",
 	"multi": true,
 	"fields": [
-		{"name": "Property ID", "id": "prop-id", "type": "number", "index": true},
+		{"name": "Property ID", "id": "prop-id", "type": "number", "index": true, "list": true},
 		
-		{"name": "Name", "id": "name", "type": "text", "hint": "Complete porperty name"},
+		{"name": "Name", "id": "name", "type": "text", "hint": "Complete porperty name", "list": true},
+
+		
 		{"name": "Picture", "id": "picture", "type": "url", "hint": "Image URL"},
 		{"name": "Address", "id": "address", "type": "text"},
 		{"name": "Description", "id": "description", "type": "multiline"},
