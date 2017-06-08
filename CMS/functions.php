@@ -131,7 +131,7 @@ function getTable($ct, $lang){
 	$actualData = getArrayFromJsonFile($dataFilePath);
 
 	$html = '
-	<table class="table table-bordered">
+	<table class="table table-bordered table-striped">
 		<thead><tr>';
 	//table headers
 	foreach($ct->fields as $field){
