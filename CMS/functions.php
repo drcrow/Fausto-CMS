@@ -74,19 +74,29 @@ function getLanguagesList(){
 	return explode(',', LANGUAGES);
 }
 
-function getForm($ct, $lang){
+function getForm($ct, $lang, $isEdit=false){
 	$html = '';
+	if($isEdit){
+		$dataFilePath = CONTENT_DATA_DIR.$ct->type.'-'.$lang.'.json';
+		$data = getArrayFromJsonFile($dataFilePath, true);
+		$data = $data[$isEdit];
+		//echo '<pre>'.print_r($data, true).'</pre>';
+	}
 	foreach($ct->fields as $field){
-		$html .= getFormField($field, $lang);
+		$enabled = true;
+		if($isEdit && @$field->index==1){
+			$enabled = false;
+		}
+		$html .= getFormField($field, $lang, $enabled, @$data[$field->id]);
 	}
 	$html .= '<div class="pull-right" style="overflow:auto"><button class="btn btn-primary" type="submit">Save</button></div>';
 	return $html;
 }
 
-function getFormField($field, $lang){
+function getFormField($field, $lang, $enabled=true, $value=''){
 	$func = 'field_'.$field->type;
 	if(function_exists($func)){
-		return $func($field, $lang);
+		return $func($field, $lang, $enabled, $value);
 	}else{
 		return 'Field type '.$field->type.' is undefined!';
 	}
@@ -105,7 +115,7 @@ function saveDataToFile($type, $lang, $data, $edit=''){
 	$dataFilePath = CONTENT_DATA_DIR.$type.'-'.$lang.'.json';
 	$actualData = getArrayFromJsonFile($dataFilePath, true);
 	
-	if($actualData==''){
+	if($actualData == ''){
 		$actualData = array();
 	}
 

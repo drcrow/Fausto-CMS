@@ -1,13 +1,27 @@
 <?php
+//gets the definition of the current content type
 $ct = getContentType($_GET['content']);
+//flag indicaing the id of the item if it's an edition
+//false if it's an "add new"
+if(isset($_GET['edit'])){
+	$isEdit = $_GET['edit'];
+}else{
+	$isEdit = false;
+}
 ?>
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <h1 class="page-header">
-  	<span class="glyphicon <?=$ct->icon?>" aria-hidden="true"></span> Add <?=$ct->single?>
+<?php
+if(isset($_GET['add'])){
+	echo '<span class="glyphicon '.$ct->icon.'" aria-hidden="true"></span> Add '.$ct->single;
+}elseif($isEdit){
+	echo '<span class="glyphicon '.$ct->icon.'" aria-hidden="true"></span> Edit '.$ct->single;
+}
+?>
   </h1>
 
 <?php
-//SAVE
+//SAVE (or EDIT)
 if(count($_POST)>0){
 	if(saveData($ct, $_POST)){
 		echo '<div class="alert alert-success" role="alert">Data saved!</div>';
@@ -52,12 +66,12 @@ if(count($languages)>1){
 		}
 
 		echo '<div class="tab-pane fade '.$tempClass.'" role="tabpanel" id="langTab-'.$lang.'" aria-labelledby="home-tab"> ';
-		echo getForm($ct, $lang);
+		echo getForm($ct, $lang, $isEdit);
 		echo '</div>';
 		
 	}
 	echo '<input type="hidden" name="type" value="'.$ct->type.'">';
-	echo '<input type="hidden" name="edit" value="'.@$_GET['id'].'">';
+	echo '<input type="hidden" name="edit" value="'.@$_GET['edit'].'">';
 	echo '</div>';
 	echo '</form>';
 }

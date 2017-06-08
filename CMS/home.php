@@ -6,7 +6,9 @@ require_once('home_nav.php');
 <?php
 require_once('home_sidebar.php');
 
-if(isset($_GET['add'])){
+if(isset($_GET['edit'])){
+	require_once('home_content_add.php');
+}elseif(isset($_GET['add'])){
 	require_once('home_content_add.php');
 }elseif(isset($_GET['content'])){
 	require_once('home_content.php');
