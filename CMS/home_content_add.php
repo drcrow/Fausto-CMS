@@ -17,7 +17,7 @@ if(isset($_POST)){
 }
 
 
-echo '<pre>'.print_r($_POST, true).'</pre>';
+//echo '<pre>'.print_r($_POST, true).'</pre>';
 
 //LANGUAGES TABS
 if(count($languages)>1){

@@ -102,7 +102,7 @@ function saveData($ct, $data){
 
 function saveDataToFile($type, $lang, $data, $edit){
 	
-	print_r($data);
+	//print_r($data);
 
 	$dataFilePath = CONTENT_DATA_DIR.$type.'-'.$lang.'.json';
 	$dataFile = @file_get_contents($dataFilePath);
@@ -111,7 +111,10 @@ function saveDataToFile($type, $lang, $data, $edit){
 		$actualData = array();
 	}
 
-	echo 'TYPE '.getIndexId($type);
+	$indexId = getIndexId($type);
+	$actualData[$data[$indexId]] = $data;
+	$actualData = json_encode($actualData);
+	file_put_contents($dataFilePath, $actualData);
 
 }
 
