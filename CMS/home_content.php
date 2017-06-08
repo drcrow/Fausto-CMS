@@ -6,7 +6,26 @@ $ct = getContentType($_GET['content']);
   	<span class="glyphicon <?=$ct->icon?>" aria-hidden="true"></span> <?=$ct->label?> <a class="btn btn-success" href="?content=<?=$_GET['content']?>&add"><span class="glyphicon glyphicon-plus" aria-hidden="false"></a>
   </h1>
 <?php
-//print_r($ct);
+//DELETE CONFIRMATION
+if(isset($_GET['delete']) && !isset($_GET['confirm'])){
+	echo '<div class="alert alert-danger" role="alert">
+		  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		  Confirm deletion of '.$_GET['delete'].' 
+		  <a type="button" class="btn btn-success" href="?content='.$_GET['content'].'&delete='.$_GET['delete'].'&confirm">Yes</a> 
+		  <a type="button" class="btn btn-success" href="?content='.$_GET['content'].'">No</a>
+		</div>';
+}
+
+//DELTE
+if(isset($_GET['delete']) && isset($_GET['confirm'])){
+	echo '<div class="alert alert-success" role="alert">
+		  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		  The item '.$_GET['delete'].' whas deleted 
+		</div>';
+	deleteRowFromJson($_GET['content'], $_GET['delete']);
+}
+
+
 //LANGUAGES TABS
 if(count($languages)>1){
 	$first = true;

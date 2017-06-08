@@ -100,14 +100,9 @@ function saveData($ct, $data){
 	return true;
 }
 
-function saveDataToFile($type, $lang, $data, $edit){
+function saveDataToFile($type, $lang, $data, $edit=''){
 	
-	//print_r($data);
-
 	$dataFilePath = CONTENT_DATA_DIR.$type.'-'.$lang.'.json';
-	//$dataFile = @file_get_contents($dataFilePath);
-	//$actualData = json_decode($dataFile);
-
 	$actualData = getArrayFromJsonFile($dataFilePath, true);
 	
 	if($actualData==''){
@@ -115,7 +110,7 @@ function saveDataToFile($type, $lang, $data, $edit){
 	}
 
 	$indexId = getIndexId($type);
-	$actualData[$data[$indexId]] = $data;
+	@$actualData[$data[$indexId]] = $data;
 	$actualData = json_encode($actualData);
 	file_put_contents($dataFilePath, $actualData);
 
@@ -138,14 +133,19 @@ function getTable($ct, $lang){
 	$html = '
 	<table class="table table-bordered">
 		<thead><tr>';
-
+	//table headers
 	foreach($ct->fields as $field){
-		if(@$field->list==1){
+		//if(@$field->list==1){
+		if(isFieldListable($ct, $field->id)){
 			$html .= '<th>'.$field->name.'</th>';
 		}
 	}
 	$html .= '<th>Options</th>';
 	$html .= '<tbody>';
+	//table data
+	if($actualData==''){
+		$actualData = array();
+	}
 	foreach($actualData as $row){
 		$html .= '<tr>';
 		foreach($row as $id=>$value){
@@ -154,10 +154,12 @@ function getTable($ct, $lang){
 			}
 		
 		}
+		//table options buttons
 		$html .= '<td>';
-		$html .= '<button type="button" class="btn btn-success" aria-label="Left Align"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>';
+		$html .= '<a type="button" class="btn btn-success" href="?content='.$_GET['content'].'&edit='.$row->{getIndexId($ct->type)}.'"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+
 		$html .= '&nbsp;&nbsp;';
-		$html .= '<button type="button" class="btn btn-danger" aria-label="Left Align"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
+		$html .= '<a type="button" class="btn btn-danger" href="?content='.$_GET['content'].'&delete='.$row->{getIndexId($ct->type)}.'"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>';
 		$html .= '</td>';
 		$html .= '</tr>';
 	}
@@ -173,5 +175,18 @@ function isFieldListable($ct, $fieldId){
 		}
 	}
 	return false;
+}
+
+function deleteRowFromJson($type, $index){
+
+	$langs = getLanguagesList();
+	foreach($langs as $lang){
+		$dataFilePath = CONTENT_DATA_DIR.$type.'-'.$lang.'.json';
+		$actualData = getArrayFromJsonFile($dataFilePath, true);
+		unset($actualData[$index]);
+		$actualData = json_encode($actualData);
+		file_put_contents($dataFilePath, $actualData);
+		
+	}
 }
 ?>
