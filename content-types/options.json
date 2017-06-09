@@ -5,9 +5,9 @@
 	"icon": "glyphicon-edit",
 	"multi": false,
 	"fields": [
-		{"name": "AAAAA", "id": "prop-id", "type": "int"},
-		{"name": "BBBBB", "id": "name", "type": "text"},
-		{"name": "Description", "id": "description", "type": "multiline"},
-		{"name": "Picture", "id": "picture", "type": "url", "hint": "Image URL"}
+		{"name": "Page Title", "id": "page-title", "type": "text"},
+		{"name": "Top Box Title", "id": "tb-title", "type": "text"},
+		{"name": "Top Box Text", "id": "tb-text", "type": "text"},
+		{"name": "Copyright", "id": "copy", "type": "text"}
 	]
 }

@@ -156,3 +156,8 @@ body {
   border-bottom: 1px solid #ddd;
   overflow: auto;
 }
+
+.tableOptionsCell{
+    text-align: center;
+    width: 130px;
+}

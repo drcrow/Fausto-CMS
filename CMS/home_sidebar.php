@@ -4,7 +4,12 @@
     <li><a href="?media"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Media</a></li>
 <?php
 foreach($contentTypes as $ct){
-  echo '<li><a href="?content='.$ct->type.'"><span class="glyphicon '.$ct->icon.'" aria-hidden="true"></span> '.$ct->label.'</a></li>';
+	if($ct->multi==true){
+		$url = '?content='.$ct->type;
+	}else{
+		$url = '?content='.$ct->type.'&edit=1';
+	}
+	echo '<li><a href="'.$url.'"><span class="glyphicon '.$ct->icon.'" aria-hidden="true"></span> '.$ct->label.'</a></li>';
 }
 ?>
 

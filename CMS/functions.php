@@ -105,12 +105,12 @@ function getFormField($field, $lang, $enabled=true, $value=''){
 function saveData($ct, $data){
 	$langs = getLanguagesList();
 	foreach($langs as $lang){
-		saveDataToFile($data['type'], $lang, $data[$lang], $data['edit']);
+		saveDataToFile($data['type'], $lang, $data[$lang]);
 	}
 	return true;
 }
 
-function saveDataToFile($type, $lang, $data, $edit=''){
+function saveDataToFile($type, $lang, $data){
 	
 	$dataFilePath = CONTENT_DATA_DIR.$type.'-'.$lang.'.json';
 	$actualData = getArrayFromJsonFile($dataFilePath, true);
@@ -119,8 +119,15 @@ function saveDataToFile($type, $lang, $data, $edit=''){
 		$actualData = array();
 	}
 
-	$indexId = getIndexId($type);
-	@$actualData[$data[$indexId]] = $data;
+	//echo '<pre>'.print_r($data, true).'</pre>';
+
+	//gets the index field id (multi)
+	$indexId = @getIndexId($type);
+	$indexId = @$data[$indexId];
+	//gets the index field id (single)
+	$indexId = 1;
+
+	@$actualData[$indexId] = $data;
 	$actualData = json_encode($actualData);
 	file_put_contents($dataFilePath, $actualData);
 
@@ -150,7 +157,7 @@ function getTable($ct, $lang){
 			$html .= '<th>'.$field->name.'</th>';
 		}
 	}
-	$html .= '<th>Options</th>';
+	$html .= '<th>&nbsp;</th>';
 	$html .= '<tbody>';
 	//table data
 	if($actualData==''){
@@ -165,7 +172,7 @@ function getTable($ct, $lang){
 		
 		}
 		//table options buttons
-		$html .= '<td>';
+		$html .= '<td class="tableOptionsCell">';
 		$html .= '<a type="button" class="btn btn-success" href="?content='.$_GET['content'].'&edit='.$row->{getIndexId($ct->type)}.'"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
 
 		$html .= '&nbsp;&nbsp;';

@@ -17,7 +17,7 @@ function field_text($fieldInfo, $lang, $enabled=true, $value=''){
 	if($enabled){
 		$disabled = '';
 	}else{
-		$disabled = 'disabled';
+		$disabled = 'readonly';
 	}
 	$html = '
 		<div class="form-group">
@@ -44,7 +44,7 @@ function field_number($fieldInfo, $lang, $enabled=true, $value=''){
 	if($enabled){
 		$disabled = '';
 	}else{
-		$disabled = 'disabled';
+		$disabled = 'readonly';
 	}
 	$html = '
 		<div class="form-group">
@@ -71,7 +71,7 @@ function field_url($fieldInfo, $lang, $enabled=true, $value=''){
 	if($enabled){
 		$disabled = '';
 	}else{
-		$disabled = 'disabled';
+		$disabled = 'readonly';
 	}
 	$html = '
 		<div class="form-group">
@@ -98,7 +98,7 @@ function field_multiline($fieldInfo, $lang, $enabled=true, $value=''){
 	if($enabled){
 		$disabled = '';
 	}else{
-		$disabled = 'disabled';
+		$disabled = 'readonly';
 	}
 	$html = '
 		<div class="form-group">
