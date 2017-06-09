@@ -18,7 +18,11 @@
 		{"name": "Photos", "id": "photos_url", "type": "url"},
 		{"name": "Videos", "id": "videos_url", "type": "url"},
 		{"name": "View More", "id": "view_more_url", "type": "url"},
-		{"name": "Book Now", "id": "book_now", "type": "url"}
+		{"name": "Book Now", "id": "book_now", "type": "url"},
+
+		{"name": "Country", "id": "country", "type": "text"},
+		{"name": "State", "id": "state", "type": "text"},
+		{"name": "City", "id": "city", "type": "text"}
 		
 	]
 }

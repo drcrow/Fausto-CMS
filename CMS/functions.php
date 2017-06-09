@@ -4,7 +4,7 @@ require_once('fields.php');
 
 //the rest of the functions
 function isAdmin(){
-	if($_SESSION['user'] == ADMIN_USER && $_SESSION['pass'] == ADMIN_PASS){
+	if(@$_SESSION['user'] == ADMIN_USER && $_SESSION['pass'] == ADMIN_PASS){
 		return true;
 	}else{
 		return false;
