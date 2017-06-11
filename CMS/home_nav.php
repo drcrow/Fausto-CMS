@@ -11,14 +11,19 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Dashboard</a></li>
-        <li><a href="#">Settings</a></li>
-        <li><a href="#">Profile</a></li>
-        <li><a href="?logout">Logout</a></li>
+<?php
+foreach($contentTypes as $ct){
+  if($ct->multi==true){
+    $url = '?content='.$ct->type;
+  }else{//for single content types (multi=false)
+    $url = '?content='.$ct->type.'&edit=1';
+  }
+  echo '<li><a href="'.$url.'"><span class="glyphicon '.$ct->icon.'" aria-hidden="true"></span> '.$ct->label.'</a></li>';
+}
+?>
+        <li><a href="?logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
       </ul>
-      <form class="navbar-form navbar-right">
-        <input type="text" class="form-control" placeholder="Search...">
-      </form>
+
     </div>
   </div>
 </nav>

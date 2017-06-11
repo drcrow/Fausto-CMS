@@ -116,6 +116,7 @@ body {
 
 .main {
   padding: 20px;
+  background: #fff;
 }
 @media (min-width: 768px) {
   .main {

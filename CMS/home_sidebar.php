@@ -6,7 +6,7 @@
 foreach($contentTypes as $ct){
 	if($ct->multi==true){
 		$url = '?content='.$ct->type;
-	}else{
+	}else{//for single content types (multi=false)
 		$url = '?content='.$ct->type.'&edit=1';
 	}
 	echo '<li><a href="'.$url.'"><span class="glyphicon '.$ct->icon.'" aria-hidden="true"></span> '.$ct->label.'</a></li>';
