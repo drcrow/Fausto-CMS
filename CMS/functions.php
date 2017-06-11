@@ -87,16 +87,20 @@ function getForm($ct, $lang, $isEdit=false){
 		if($isEdit && @$field->index==1){
 			$enabled = false;
 		}
-		$html .= getFormField($field, $lang, $enabled, @$data[$field->id]);
+		$required = false;
+		if(getIndexId($ct->type) == $field->id){
+			$required = true;
+		}
+		$html .= getFormField($field, $lang, $enabled, @$data[$field->id], $required);
 	}
 	$html .= '<div class="pull-right" style="overflow:auto"><button class="btn btn-primary" type="submit">Save</button></div>';
 	return $html;
 }
 
-function getFormField($field, $lang, $enabled=true, $value=''){
+function getFormField($field, $lang, $enabled=true, $value='', $required=false){
 	$func = 'field_'.$field->type;
 	if(function_exists($func)){
-		return $func($field, $lang, $enabled, $value);
+		return $func($field, $lang, $enabled, $value, $required);
 	}else{
 		return 'Field type '.$field->type.' is undefined!';
 	}

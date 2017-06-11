@@ -6,7 +6,6 @@
 	"multi": true,
 	"fields": [
 		{"name": "Property ID", "id": "prop-id", "type": "number", "index": true, "list": true},
-		
 		{"name": "Name", "id": "name", "type": "text", "hint": "Complete porperty name", "list": true},
 
 		

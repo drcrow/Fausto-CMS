@@ -4,7 +4,7 @@ Field functions
 Define new fields types here
 */
 
-function field_text($fieldInfo, $lang, $enabled=true, $value=''){
+function field_text($fieldInfo, $lang, $enabled=true, $value='', $required=false){
 	//field id & name
 	$fId = $lang.'['.$fieldInfo->id.']';
 	//hint (or "help block")
@@ -22,11 +22,17 @@ function field_text($fieldInfo, $lang, $enabled=true, $value=''){
 	}else{
 		$disabled = 'readonly';
 	}
+	//required field
+	if($required){
+		$required = 'required';
+	}else{
+		$required = '';
+	}
 	$html = '
 		<div class="form-group">
 			<label for="'.$fId.'" class="col-sm-2 control-label">'.$fieldInfo->name.'</label>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="'.$fId.'" name="'.$fId.'" value="'.$value.'" '.$disabled.'>'.$hint.'
+				<input type="text" class="form-control" id="'.$fId.'" name="'.$fId.'" value="'.$value.'" '.$disabled.' '.$required.'>'.$hint.'
 			</div>
 		</div>
 	';
@@ -34,7 +40,7 @@ function field_text($fieldInfo, $lang, $enabled=true, $value=''){
 	return $html;
 }
 
-function field_number($fieldInfo, $lang, $enabled=true, $value=''){
+function field_number($fieldInfo, $lang, $enabled=true, $value='', $required=false){
 	$fId = $lang.'['.$fieldInfo->id.']';
 	$hint = '';
 	if(isset($fieldInfo->hint)){
@@ -49,11 +55,17 @@ function field_number($fieldInfo, $lang, $enabled=true, $value=''){
 	}else{
 		$disabled = 'readonly';
 	}
+	//required field
+	if($required){
+		$required = 'required';
+	}else{
+		$required = '';
+	}
 	$html = '
 		<div class="form-group">
 			<label for="'.$fId.'" class="col-sm-2 control-label">'.$fieldInfo->name.'</label>
 			<div class="col-sm-2">
-				<input type="number" class="form-control" id="'.$fId.'" name="'.$fId.'" value="'.$value.'" '.$disabled.'>'.$hint.'
+				<input type="number" class="form-control" id="'.$fId.'" name="'.$fId.'" value="'.$value.'" '.$disabled.' '.$required.'>'.$hint.'
 			</div>
 		</div>
 	';
