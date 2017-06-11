@@ -68,6 +68,7 @@ function getContentType($type){
 			return $ct;
 		}
 	}
+	return false;
 }
 
 function getLanguagesList(){
@@ -129,7 +130,9 @@ function saveDataToFile($type, $lang, $data){
 	$indexId = @getIndexId($type);
 	$indexId = @$data[$indexId];
 	//gets the index field id (single)
-	$indexId = 1;
+	if($indexId==''){
+		$indexId = 1;
+	}
 
 	@$actualData[$indexId] = $data;
 	$actualData = json_encode($actualData);
@@ -140,10 +143,11 @@ function saveDataToFile($type, $lang, $data){
 function getIndexId($type){
 	$ct = getContentType($type);
 	foreach($ct->fields as $field){
-		if($field->index==1){
+		if(@$field->index==1){
 			return $field->id;
 		}
 	}
+	return '';
 }
 
 function getTable($ct, $lang){
