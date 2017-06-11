@@ -5,15 +5,18 @@ Define new fields types here
 */
 
 function field_text($fieldInfo, $lang, $enabled=true, $value=''){
+	//field id & name
 	$fId = $lang.'['.$fieldInfo->id.']';
+	//hint (or "help block")
 	$hint = '';
 	if(isset($fieldInfo->hint)){
 		$hint = '<p class="help-block">'.$fieldInfo->hint.'</p>';
 	}
-	//$value = '';
+	//reload value from POST
 	if(isset($_POST[$lang][$fieldInfo->id])){
 		$value = $_POST[$lang][$fieldInfo->id];
 	}
+	//disable field
 	if($enabled){
 		$disabled = '';
 	}else{
