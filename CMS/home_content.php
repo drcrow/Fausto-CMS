@@ -1,7 +1,7 @@
 <?php
 $ct = getContentType($_GET['content']);
 ?>
-<div class="main">
+
   <h1 class="page-header">
   	<span class="glyphicon <?=$ct->icon?>" aria-hidden="true"></span> <?=$ct->label?> <a class="btn btn-success" href="?content=<?=$_GET['content']?>&add"><span class="glyphicon glyphicon-plus" aria-hidden="false"></a>
   </h1>
@@ -67,7 +67,7 @@ if(count($languages)>1){
 	echo '</form>';
 }
 ?>
-</div>
+
 
 <script>
 

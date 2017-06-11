@@ -9,7 +9,7 @@ if(isset($_GET['edit'])){
 	$isEdit = false;
 }
 ?>
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
   <h1 class="page-header">
 <?php
 if(isset($_GET['add'])){
@@ -77,10 +77,10 @@ if(count($languages)>1){
 }
 ?>
 
-</div>
+
 
 <script>
-//language tabs
+//language tabs</div>
 $( document ).ready(function() {
     $('#langTabs a').click(function (e) {
 	  e.preventDefault()
