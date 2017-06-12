@@ -12,12 +12,14 @@
 		{"name": "Top Box Title", "id": "tb-title", "type": "text"},
 		{"name": "Top Box Text", "id": "tb-text", "type": "text"},
 		
-		{"name": "Form Title", 		"id": "form-title", "type": "text"},
-		{"name": "Form Countriy", 	"id": "form-country", "type": "text"},
-		{"name": "Form State", 		"id": "form-state", "type": "text"},
-		{"name": "Form City", 		"id": "form-city", "type": "text"},
-		{"name": "Form Button", 	"id": "form-button", "type": "text"},
-		{"name": "Form Text", 		"id": "form-text", "type": "text"},
+		{"name": "Form Title", 		"id": "form-title", 		"type": "text"},
+		{"name": "Form Countriy", 	"id": "form-country", 		"type": "text"},
+		{"name": "Form State", 		"id": "form-state", 		"type": "text"},
+		{"name": "Form City", 		"id": "form-city", 			"type": "text"},
+		{"name": "Form Button", 	"id": "form-button", 		"type": "text"},
+		{"name": "Form Text", 		"id": "form-text", 			"type": "text"},
+		{"name": "Form T&C", 		"id": "form-tc", 			"type": "text"},
+		{"name": "Form Properties", "id": "form-properties", 	"type": "text"},
 
 
 		{"name": "EM Code", "id": "em", "type": "text"},
