@@ -1,6 +1,8 @@
 <?php
 require_once('config.php');
 require_once('CMS/functions.php');
+ini_set('session.gc_maxlifetime', 3600*2);
+session_set_cookie_params(3600*2);
 session_start();
 
 //LOGOUT
