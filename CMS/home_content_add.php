@@ -9,7 +9,7 @@ if(isset($_GET['edit'])){
 	$isEdit = false;
 }
 ?>
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
   <h1 class="page-header">
 <?php
 if(isset($_GET['add'])){
@@ -77,15 +77,34 @@ if(count($languages)>1){
 }
 ?>
 
-</div>
+
 
 <script>
-
-
+//language tabs</div>
 $( document ).ready(function() {
     $('#langTabs a').click(function (e) {
 	  e.preventDefault()
 	  $(this).tab('show')
 	})
+});
+</script>
+
+<script>
+//index fields relations
+//one language changes all the others
+$( document ).ready(function() {
+<?php
+$index = getIndexId($ct->type);
+
+foreach($languages as $lang){
+	$id = 'input[name="'.$lang.'['.$index.']"]';
+	echo '$(\''.$id.'\').keyup(function() {';
+	foreach($languages as $lang2){
+		$id2 = 'input[name="'.$lang2.'['.$index.']"]';
+		echo '$(\''.$id2.'\').val($(this).val());';
+	}
+	echo '});';
+}
+?>
 });
 </script>

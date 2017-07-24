@@ -1,7 +1,6 @@
 body {
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #eee;
 }
 
 .form-signin {
@@ -116,6 +115,7 @@ body {
 
 .main {
   padding: 20px;
+  background: #fff;
 }
 @media (min-width: 768px) {
   .main {
@@ -160,4 +160,8 @@ body {
 .tableOptionsCell{
     text-align: center;
     width: 130px;
+}
+
+.navbar-brand>img {
+  display: inline !important;
 }

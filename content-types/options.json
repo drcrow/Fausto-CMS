@@ -6,8 +6,44 @@
 	"multi": false,
 	"fields": [
 		{"name": "Page Title", "id": "page-title", "type": "text"},
+		{"name": "Meta Description", "id": "meta-description", "type": "text"},
+		{"name": "Meta Keywords", "id": "meta-keywords", "type": "text"},
+
 		{"name": "Top Box Title", "id": "tb-title", "type": "text"},
 		{"name": "Top Box Text", "id": "tb-text", "type": "text"},
-		{"name": "Copyright", "id": "copy", "type": "text"}
+		{"name": "Top Box Text Mobile", "id": "tb-text-mob", "type": "text"},
+		
+		{"name": "Form Title", 		"id": "form-title", 		"type": "text"},
+		{"name": "Form Countriy", 	"id": "form-country", 		"type": "text"},
+		{"name": "Form State", 		"id": "form-state", 		"type": "text"},
+		{"name": "Form City", 		"id": "form-city", 			"type": "text"},
+		{"name": "Form Button", 	"id": "form-button", 		"type": "text"},
+		{"name": "Form Text", 		"id": "form-text", 			"type": "text"},
+		{"name": "Form T&C", 		"id": "form-tc", 			"type": "text"},
+		{"name": "Form Properties", "id": "form-properties", 	"type": "text"},
+
+		{"name": "Brands Bar", 		"id": "brands-bar", 		"type": "text"},
+
+		{"name": "Social Text 1", 	"id": "social-t1", 			"type": "text"},
+		{"name": "Social Text 2", 	"id": "social-t2", 			"type": "text"},
+
+		{"name": "Rewards Text", 	"id": "rewards-text", 		"type": "text"},
+		{"name": "Rewards Link", 	"id": "rewards-link", 		"type": "text"},
+
+		{"name": "Guaranteed Link1", 	"id": "guaranteed-link1", 		"type": "text"},
+		{"name": "Guaranteed Link2", 	"id": "guaranteed-link2", 		"type": "text"},
+		{"name": "Guaranteed Link3", 	"id": "guaranteed-link3", 		"type": "text"},
+		{"name": "Guaranteed Link4", 	"id": "guaranteed-link4", 		"type": "text"},
+		{"name": "Guaranteed Link5", 	"id": "guaranteed-link5", 		"type": "text"},
+
+		{"name": "EM Code", "id": "em", "type": "text"},
+		{"name": "Copyright", "id": "copy", "type": "text"},
+
+		{"name": "Results Title", "id": "results-title", "type": "text"},
+		{"name": "More Photos", "id": "more-photos", "type": "text"},
+		{"name": "More Videos", "id": "more-videos", "type": "text"},
+		{"name": "More Offers", "id": "more-offers", "type": "text"},
+		{"name": "Book Text", "id": "book-text", "type": "text"},
+		{"name": "Book Button", "id": "book-button", "type": "text"}
 	]
 }

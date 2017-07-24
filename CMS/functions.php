@@ -4,7 +4,7 @@ require_once('fields.php');
 
 //the rest of the functions
 function isAdmin(){
-	if(@$_SESSION['user'] == ADMIN_USER && $_SESSION['pass'] == ADMIN_PASS){
+	if($_SESSION['user'] == ADMIN_USER && $_SESSION['pass'] == ADMIN_PASS){
 		return true;
 	}else{
 		return false;
@@ -41,9 +41,32 @@ function getJsonFilesList($dir){
 	return $thelist;
 }
 
-function getArrayFromJsonFile($file, $assoc=false){
+function getArrayFromJsonFile($file, $assoc=false, $where=array()){
 	$res = @file_get_contents($file);
 	$res = json_decode($res, $assoc);
+	if(count($where)==0){
+		return $res;
+	}
+
+	foreach($where as $id=>$val){
+		if($val!=''){
+			$res = getFilteredArray($res, $id, $val);
+		}
+	}
+
+	return $res;
+}
+
+function getFilteredArray($data, $filterId, $filterValue){
+	$res = array();
+	foreach($data as $id=>$row){
+		
+		//echo '<br>'.$row['country'].' '.$row['state'].' '.$row['city'];
+
+		if($row[$filterId]==$filterValue){
+			$res[$id] = $data[$id];
+		}
+	}
 	return $res;
 }
 
@@ -68,6 +91,7 @@ function getContentType($type){
 			return $ct;
 		}
 	}
+	return false;
 }
 
 function getLanguagesList(){
@@ -87,16 +111,20 @@ function getForm($ct, $lang, $isEdit=false){
 		if($isEdit && @$field->index==1){
 			$enabled = false;
 		}
-		$html .= getFormField($field, $lang, $enabled, @$data[$field->id]);
+		$required = false;
+		if(getIndexId($ct->type) == $field->id){
+			$required = true;
+		}
+		$html .= getFormField($field, $lang, $enabled, @$data[$field->id], $required);
 	}
 	$html .= '<div class="pull-right" style="overflow:auto"><button class="btn btn-primary" type="submit">Save</button></div>';
 	return $html;
 }
 
-function getFormField($field, $lang, $enabled=true, $value=''){
+function getFormField($field, $lang, $enabled=true, $value='', $required=false){
 	$func = 'field_'.$field->type;
 	if(function_exists($func)){
-		return $func($field, $lang, $enabled, $value);
+		return $func($field, $lang, $enabled, $value, $required);
 	}else{
 		return 'Field type '.$field->type.' is undefined!';
 	}
@@ -125,7 +153,9 @@ function saveDataToFile($type, $lang, $data){
 	$indexId = @getIndexId($type);
 	$indexId = @$data[$indexId];
 	//gets the index field id (single)
-	$indexId = 1;
+	if($indexId==''){
+		$indexId = 1;
+	}
 
 	@$actualData[$indexId] = $data;
 	$actualData = json_encode($actualData);
@@ -136,10 +166,11 @@ function saveDataToFile($type, $lang, $data){
 function getIndexId($type){
 	$ct = getContentType($type);
 	foreach($ct->fields as $field){
-		if($field->index==1){
+		if(@$field->index==1){
 			return $field->id;
 		}
 	}
+	return '';
 }
 
 function getTable($ct, $lang){
@@ -148,7 +179,7 @@ function getTable($ct, $lang){
 	$actualData = getArrayFromJsonFile($dataFilePath);
 
 	$html = '
-	<table class="table table-bordered table-striped">
+	<table class="table table-bordered table-striped" id="fausto-table-'.$ct->type.'">
 		<thead><tr>';
 	//table headers
 	foreach($ct->fields as $field){
@@ -182,6 +213,13 @@ function getTable($ct, $lang){
 	}
 	$html .= '</tbody>';
 	$html .= '</table>';
+
+	$html .= '<script>
+			$(document).ready( function () {
+    			$("#fausto-table-'.$ct->type.'").DataTable();
+			} );
+			</script>';
+
 	return $html;
 }
 
@@ -205,5 +243,27 @@ function deleteRowFromJson($type, $index){
 		file_put_contents($dataFilePath, $actualData);
 		
 	}
+}
+
+function getArrayOfRelatedFields($data, $fields){
+	$result = array();
+	
+	foreach($data as $row){
+		$tempCode = '$result';
+		foreach($fields as $id=>$field){
+			if(trim($row[$field])!=''){
+				if($id!=(count($fields)-1)){//check if (not)last field of list
+					$tempCode.='["'.$row[$field].'"]';
+				}else{
+					$tempCode = 'if(@!in_array("'.$row[$field].'", '.$tempCode.')){'.$tempCode.'[]="'.$row[$field].'";}';
+					eval($tempCode);
+					//$result[] = $tempCode;
+				}
+			}
+		}
+
+	}
+	//$result = array_map("unserialize", array_unique(array_map("serialize", $result)));
+	return $result;
 }
 ?>

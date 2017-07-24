@@ -1,10 +1,10 @@
 <?php
 require_once('home_nav.php');
 ?>
-<div class="container-fluid">
-  <div class="row">
+<div class="container">
+
 <?php
-require_once('home_sidebar.php');
+//require_once('home_sidebar.php');
 
 if(isset($_GET['edit'])){
 	require_once('home_content_add.php');
@@ -17,5 +17,5 @@ if(isset($_GET['edit'])){
 }
 ?>
         
-  </div>
+
 </div>
