@@ -12,14 +12,21 @@
 		{"name": "Picture", 	"id": "picture", "type": "url", "hint": "Image URL"},
 		{"name": "Address", 	"id": "address", "type": "text"},
 		{"name": "Description", "id": "description", "type": "multiline"},
+<<<<<<< HEAD
 		{"name": "Stars", "id": "stars", "type": "text", "hint": "Use . (dot) as decimal separator"},
+=======
+		{"name": "Stars", 		"id": "stars", "type": "number"},
+>>>>>>> origin/master
 		{"name": "Offer", 		"id": "offer", "type": "multiline"},
 
 		{"name": "Latitude", 	"id": "lat", "type": "text"},
 		{"name": "Longitude", 	"id": "lng", "type": "text"},
 
 		{"name": "Link Photos", 	"id": "photos_url", "type": "url"},
+<<<<<<< HEAD
 		{"name": "Link Videos", 	"id": "videos_url", "type": "url"},
+=======
+>>>>>>> origin/master
 		{"name": "Link View More", 	"id": "view_more_url", "type": "url"},
 		{"name": "Link Book Now", 	"id": "book_now", "type": "url"},
 

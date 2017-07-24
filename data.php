@@ -3,6 +3,7 @@
 require('config.php');
 require('CMS/functions.php');
 
+<<<<<<< HEAD
 $get 		= @$_GET['get'];
 $related 	= @$_GET['related'];
 $from 		= @$_GET['from'];
@@ -28,6 +29,16 @@ if($get){//get the registers
 		$dataFilePath = CONTENT_DATA_DIR.$get.'-'.$lang.'.json';
 		if(file_exists($dataFilePath)){
 			$res = getArrayFromJsonFile($dataFilePath, true, $where);
+=======
+$get = @$_GET['get'];
+$lang = @$_GET['lang'];
+
+if($get){
+	if(getContentType($get)){
+		$dataFilePath = CONTENT_DATA_DIR.$get.'-'.$lang.'.json';
+		if(file_exists($dataFilePath)){
+			$res = getArrayFromJsonFile($dataFilePath, true);
+>>>>>>> origin/master
 		}else{
 			$res = array('status'=>'error', 'description'=>'Data file doesnt exists');
 		}
@@ -35,6 +46,7 @@ if($get){//get the registers
 	}else{
 		$res = array('status'=>'error', 'description'=>'The content type doesnt exists');
 	}
+<<<<<<< HEAD
 }elseif($related){//get related fields (as country, state, city)
 	$fields = explode(',', $related);
 	array_walk($fields, 'trim');
@@ -51,6 +63,10 @@ if($get){//get the registers
 
 }else{
 	$res = array('status'=>'error', 'description'=>'Something is missing');
+=======
+}else{
+	$res = array('status'=>'error', 'description'=>'Expecting "get" parameter');
+>>>>>>> origin/master
 }
 
 
