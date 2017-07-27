@@ -115,11 +115,16 @@ function field_multiline($fieldInfo, $lang, $enabled=true, $value=''){
 	}else{
 		$disabled = 'readonly';
 	}
+	if($fieldInfo->wysiwyg){
+		$wysiwygClass = 'add_trumbowyg_wysiwyg';
+	}else{
+		$wysiwygClass = '';
+	}
 	$html = '
 		<div class="form-group">
 			<label for="'.$fId.'" class="col-sm-2 control-label">'.$fieldInfo->name.'</label>
 			<div class="col-sm-10">
-				<textarea class="form-control" rows="3" id="'.$fId.'" name="'.$fId.'" placeholder="" '.$disabled.'>'.$value.'</textarea>'.$hint.'
+				<textarea class="form-control '.$wysiwygClass.'" rows="3" id="'.$fId.'" name="'.$fId.'" placeholder="" '.$disabled.'>'.$value.'</textarea>'.$hint.'
 			</div>
 		</div>
 	';

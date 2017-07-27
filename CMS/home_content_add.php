@@ -108,3 +108,8 @@ foreach($languages as $lang){
 ?>
 });
 </script>
+
+<script>
+//WYSIWYG
+$('.add_trumbowyg_wysiwyg').trumbowyg();
+</script>

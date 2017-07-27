@@ -43,8 +43,12 @@ $languages = getLanguagesList();
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
+<!--DATATABLES-->
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+<!--WYSIWYG-->
+<script src="trumbowyg/dist/trumbowyg.min.js"></script>
+<link rel="stylesheet" href="trumbowyg/dist/ui/trumbowyg.min.css">
 
 
     <title><?=PAGE_TITLE?></title>
