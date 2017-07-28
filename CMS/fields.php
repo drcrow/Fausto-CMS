@@ -4,6 +4,20 @@ Field functions
 Define new fields types here
 */
 
+function field_separator($fieldInfo, $lang, $enabled=true, $value='', $required=false){
+	//field id & name
+	$fId = $lang.'['.$fieldInfo->id.']';
+
+	$html = '
+		<div class="form-group">
+			<label for="'.$fId.'" class="col-sm-2 control-label"><h3>'.$fieldInfo->name.'</h3></label>
+			<div class="col-sm-8"><hr></div>
+		</div>
+	';
+
+	return $html;
+}
+
 function field_text($fieldInfo, $lang, $enabled=true, $value='', $required=false){
 	//field id & name
 	$fId = $lang.'['.$fieldInfo->id.']';
