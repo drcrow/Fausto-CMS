@@ -1,0 +1,7 @@
+{
+    "require": {
+        "twitter/bootstrap": "^4.3",
+        "fortawesome/font-awesome": "^5.10",
+        "froala/wysiwyg-editor": "^3.0"
+    }
+}
