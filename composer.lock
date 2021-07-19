@@ -71,16 +71,16 @@
         },
         {
             "name": "froala/wysiwyg-editor",
-            "version": "v3.0.5",
+            "version": "v3.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/froala/wysiwyg-editor.git",
-                "reference": "91aba2a9313abb48659737da8076678a952b7364"
+                "reference": "edd86c4d2e3b68cb9aad33e87a4d44e2700d6156"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/froala/wysiwyg-editor/zipball/91aba2a9313abb48659737da8076678a952b7364",
-                "reference": "91aba2a9313abb48659737da8076678a952b7364",
+                "url": "https://api.github.com/repos/froala/wysiwyg-editor/zipball/edd86c4d2e3b68cb9aad33e87a4d44e2700d6156",
+                "reference": "edd86c4d2e3b68cb9aad33e87a4d44e2700d6156",
                 "shasum": ""
             },
             "type": "component",
@@ -111,7 +111,11 @@
                 "text",
                 "wysiwyg"
             ],
-            "time": "2019-08-16T13:58:28+00:00"
+            "support": {
+                "issues": "https://www.froala.com/wysiwyg-editor/contact",
+                "source": "https://github.com/froala/wysiwyg-editor/tree/v3.2.7"
+            },
+            "time": "2021-05-18T09:56:27+00:00"
         },
         {
             "name": "twitter/bootstrap",
@@ -172,5 +176,6 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.1.0"
 }
